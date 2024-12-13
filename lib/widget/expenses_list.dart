@@ -1,4 +1,4 @@
-import 'package:ezexpense/model/expense.dart';
+import 'package:ezexpense/model/expense_model.dart';
 import 'package:ezexpense/widget/expenses_item.dart';
 import 'package:flutter/material.dart';
 

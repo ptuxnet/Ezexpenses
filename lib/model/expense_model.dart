@@ -8,7 +8,7 @@ final formatter = DateFormat.yMd();
 
 enum Category { food, travel, leisure, work }
 
-const Map<Category, IconData> CategoryIcons = {
+Map<Category, IconData> categoryIcons = {
   Category.food: Icons.lunch_dining,
   Category.travel: Icons.flight_takeoff,
   Category.leisure: Icons.movie,

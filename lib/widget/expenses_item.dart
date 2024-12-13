@@ -1,4 +1,4 @@
-import 'package:ezexpense/model/expense.dart';
+import 'package:ezexpense/model/expense_model.dart';
 import 'package:flutter/material.dart';
 
 class ExpensesItem extends StatelessWidget {
@@ -31,7 +31,7 @@ class ExpensesItem extends StatelessWidget {
                 Row(
                   children: [
                     Icon(
-                      CategoryIcons[expense.category],
+                      categoryIcons[expense.category],
                     ),
                     const SizedBox(
                       width: 5,
