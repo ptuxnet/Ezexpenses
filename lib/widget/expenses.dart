@@ -24,18 +24,97 @@ class _ExpensesState extends State<Expenses> {
       date: DateTime.now(),
       category: Category.food,
     ),
+    Expense(
+      title: 'Vada-pav',
+      amount: 0.5,
+      date: DateTime.now(),
+      category: Category.food,
+    ),
+    Expense(
+      title: 'Vada-pav',
+      amount: 0.5,
+      date: DateTime.now(),
+      category: Category.food,
+    ),
+    Expense(
+      title: 'Vada-pav',
+      amount: 0.5,
+      date: DateTime.now(),
+      category: Category.food,
+    ),
+    Expense(
+      title: 'Vada-pav',
+      amount: 0.5,
+      date: DateTime.now(),
+      category: Category.food,
+    ),
+    Expense(
+      title: 'Vada-pav',
+      amount: 0.5,
+      date: DateTime.now(),
+      category: Category.food,
+    ),
+    Expense(
+      title: 'Vada-pav',
+      amount: 0.5,
+      date: DateTime.now(),
+      category: Category.food,
+    ),
   ];
 
   // Method for scaffold's Icon button
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
-      builder: (ctx) => const NewExpense(),
+      builder: (ctx) => NewExpense(
+        onAddExpense: _addExpense,
+      ),
+    );
+  }
+
+  // Method for add Expense.
+  void _addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+
+  // Method for remove Expense.
+  void _removeExpense(Expense expense) {
+    final expenseIndex = _registeredExpenses.indexOf(expense);
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.indigo,
+        behavior: SnackBarBehavior.floating,
+        content: const Text('Your Expense has deleted'),
+        action: SnackBarAction(
+            label: 'Undo',
+            onPressed: () {
+              setState(() {
+                _registeredExpenses.insert(expenseIndex, expense);
+              });
+            }),
+      ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    Widget mainContent = const Center(
+      child: Text('No expense found. Start adding some!'),
+    );
+
+    if (_registeredExpenses.isNotEmpty) {
+      mainContent = ExpensesList(
+        expenses: _registeredExpenses,
+        onRemoveExpense: _removeExpense,
+      );
+    }
     return Scaffold(
       appBar: AppBar(
         title: const Text('Ezexpense'),
@@ -51,9 +130,8 @@ class _ExpensesState extends State<Expenses> {
           children: [
             const Text('data'),
             Expanded(
-                child: ExpensesList(
-              expenses: _registeredExpenses,
-            )),
+              child: mainContent,
+            )
           ],
         ),
       ),
