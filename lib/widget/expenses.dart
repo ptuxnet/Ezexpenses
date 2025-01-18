@@ -18,54 +18,11 @@ class _ExpensesState extends State<Expenses> {
       date: DateTime.now(),
       category: Category.work,
     ),
-    Expense(
-      title: 'Vada-pav',
-      amount: 0.5,
-      date: DateTime.now(),
-      category: Category.food,
-    ),
-    Expense(
-      title: 'Vada-pav',
-      amount: 0.5,
-      date: DateTime.now(),
-      category: Category.food,
-    ),
-    Expense(
-      title: 'Vada-pav',
-      amount: 0.5,
-      date: DateTime.now(),
-      category: Category.food,
-    ),
-    Expense(
-      title: 'Vada-pav',
-      amount: 0.5,
-      date: DateTime.now(),
-      category: Category.food,
-    ),
-    Expense(
-      title: 'Vada-pav',
-      amount: 0.5,
-      date: DateTime.now(),
-      category: Category.food,
-    ),
-    Expense(
-      title: 'Vada-pav',
-      amount: 0.5,
-      date: DateTime.now(),
-      category: Category.food,
-    ),
-    Expense(
-      title: 'Vada-pav',
-      amount: 0.5,
-      date: DateTime.now(),
-      category: Category.food,
-    ),
   ];
 
   // Method for scaffold's Icon button
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
-      isScrollControlled: true,
       context: context,
       builder: (ctx) => NewExpense(
         onAddExpense: _addExpense,
@@ -91,14 +48,15 @@ class _ExpensesState extends State<Expenses> {
       SnackBar(
         backgroundColor: Colors.indigo,
         behavior: SnackBarBehavior.floating,
-        content: const Text('Your Expense has deleted'),
+        content: const Text('Your Expense has been deleted'),
         action: SnackBarAction(
-            label: 'Undo',
-            onPressed: () {
-              setState(() {
-                _registeredExpenses.insert(expenseIndex, expense);
-              });
-            }),
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              _registeredExpenses.insert(expenseIndex, expense);
+            });
+          },
+        ),
       ),
     );
   }
