@@ -83,12 +83,6 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
-  // var _enteredTitle = '';
-
-  // void _saveTitleInput(String inputValue) {
-  //   _enteredTitle = inputValue;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -96,10 +90,10 @@ class _NewExpenseState extends State<NewExpense> {
       child: Column(
         children: [
           TextField(
-            // onChanged: _saveTitleInput,
             controller: _titleController,
             maxLength: 50,
             decoration: const InputDecoration(
+              contentPadding: EdgeInsets.all(12),
               label: Text('Title'),
             ),
           ),
@@ -107,11 +101,10 @@ class _NewExpenseState extends State<NewExpense> {
             children: [
               Expanded(
                 child: TextField(
-                  // onChanged: _saveTitleInput,
                   controller: _amountController,
                   keyboardType: TextInputType.number,
-
                   decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.all(12),
                     prefixText: '\$',
                     label: Text('Amount'),
                   ),
@@ -141,28 +134,42 @@ class _NewExpenseState extends State<NewExpense> {
               )
             ],
           ),
+          const SizedBox(
+            height: 16,
+          ),
           Row(
             children: [
-              DropdownButton(
-                value: _selectedCategory,
-                items: Category.values
-                    .map(
-                      (category) => DropdownMenuItem(
-                        value: category,
-                        child: Text(
-                          category.name.toUpperCase(),
+              Container(
+                height: 45,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
+                  ),
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: DropdownButton(
+                  borderRadius: BorderRadius.circular(8),
+                  value: _selectedCategory,
+                  items: Category.values
+                      .map(
+                        (category) => DropdownMenuItem(
+                          value: category,
+                          child: Text(
+                            category.name.toUpperCase(),
+                          ),
                         ),
-                      ),
-                    )
-                    .toList(),
-                onChanged: (value) {
-                  if (value == null) {
-                    return;
-                  }
-                  setState(() {
-                    _selectedCategory = value;
-                  });
-                },
+                      )
+                      .toList(),
+                  onChanged: (value) {
+                    if (value == null) {
+                      return;
+                    }
+                    setState(() {
+                      _selectedCategory = value;
+                    });
+                  },
+                ),
               ),
               const Spacer(),
               TextButton(

@@ -23,6 +23,7 @@ class _ExpensesState extends State<Expenses> {
   // Method for scaffold's Icon button
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
+      isDismissible: false,
       context: context,
       builder: (ctx) => NewExpense(
         onAddExpense: _addExpense,
