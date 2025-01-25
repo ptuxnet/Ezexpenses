@@ -83,20 +83,17 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
-  // var _enteredTitle = '';
-
-  // void _saveTitleInput(String inputValue) {
-  //   _enteredTitle = inputValue;
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
+      padding: const EdgeInsets.fromLTRB(16, 48, 16, 16)
+          .copyWith(bottom: MediaQuery.of(context).viewInsets.bottom),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
             // onChanged: _saveTitleInput,
+            autofocus: true,
             controller: _titleController,
             maxLength: 50,
             decoration: const InputDecoration(
@@ -107,10 +104,8 @@ class _NewExpenseState extends State<NewExpense> {
             children: [
               Expanded(
                 child: TextField(
-                  // onChanged: _saveTitleInput,
                   controller: _amountController,
                   keyboardType: TextInputType.number,
-
                   decoration: const InputDecoration(
                     prefixText: '\$',
                     label: Text('Amount'),
