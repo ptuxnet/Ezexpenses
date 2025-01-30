@@ -23,7 +23,7 @@ class _NewExpenseState extends State<NewExpense> {
   Category _selectedCategory = Category.food;
 
   void _submitExpenseData() {
-    final enteredAmount = double.tryParse(_amountController.text);
+    final enteredAmount = int.tryParse(_amountController.text);
     final amountIsInvalid = enteredAmount == null || enteredAmount <= 0;
 
     if (_titleController.text.trim().isEmpty ||
@@ -82,7 +82,7 @@ class _NewExpenseState extends State<NewExpense> {
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
-      heightFactor: 0.9,
+      heightFactor: 0.65,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(16, 48, 16, 16),
         child: SingleChildScrollView(

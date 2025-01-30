@@ -14,7 +14,67 @@ class _ExpensesState extends State<Expenses> {
   final List<Expense> _registeredExpenses = [
     Expense(
       title: 'Course',
-      amount: 19.99,
+      amount: 200,
+      date: DateTime.now(),
+      category: Category.work,
+    ),
+    Expense(
+      title: 'Groceries',
+      amount: 510,
+      date: DateTime.now(),
+      category: Category.food,
+    ),
+    Expense(
+      title: 'Fuel',
+      amount: 310,
+      date: DateTime.now(),
+      category: Category.travel,
+    ),
+    Expense(
+      title: 'Books',
+      amount: 160,
+      date: DateTime.now(),
+      category: Category.work,
+    ),
+    Expense(
+      title: 'Movie',
+      amount: 130,
+      date: DateTime.now(),
+      category: Category.leisure,
+    ),
+    Expense(
+      title: 'Dinner',
+      amount: 450,
+      date: DateTime.now(),
+      category: Category.food,
+    ),
+    Expense(
+      title: 'Gym Membership',
+      amount: 250,
+      date: DateTime.now(),
+      category: Category.work,
+    ),
+    Expense(
+      title: 'Lunch',
+      amount: 200,
+      date: DateTime.now(),
+      category: Category.food,
+    ),
+    Expense(
+      title: 'Taxi',
+      amount: 150,
+      date: DateTime.now(),
+      category: Category.travel,
+    ),
+    Expense(
+      title: 'Concert',
+      amount: 6000,
+      date: DateTime.now(),
+      category: Category.leisure,
+    ),
+    Expense(
+      title: 'Office Supplies',
+      amount: 350,
       date: DateTime.now(),
       category: Category.work,
     ),
@@ -47,11 +107,10 @@ class _ExpensesState extends State<Expenses> {
     ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: Colors.indigo,
-        behavior: SnackBarBehavior.floating,
+        duration: const Duration(seconds: 2),
         content: const Text('Your Expense has been deleted'),
         action: SnackBarAction(
-          label: 'Undo',
+          label: 'UNDO',
           onPressed: () {
             setState(() {
               _registeredExpenses.insert(expenseIndex, expense);
@@ -76,23 +135,36 @@ class _ExpensesState extends State<Expenses> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ezexpense'),
-        actions: [
-          IconButton(
-            onPressed: _openAddExpenseOverlay,
-            icon: const Icon(Icons.add),
-          ),
-        ],
+        centerTitle: true,
+        backgroundColor: Theme.of(context).primaryColor,
+        title: const Text(
+          'Ezexpense',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
       ),
       body: Center(
         child: Column(
           children: [
-            const Text('data'),
+            const SizedBox(
+              height: 20,
+            ),
+            const Text('Graph will be shown here'),
+            const SizedBox(
+              height: 20,
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Divider(),
+            ),
             Expanded(
               child: mainContent,
             )
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _openAddExpenseOverlay,
+        child: const Icon(Icons.add),
       ),
     );
   }
