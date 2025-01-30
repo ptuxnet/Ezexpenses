@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final ThemeData appTheme = ThemeData(
   primaryColor: const Color(0xFF0052CC), // Brand Primary Default 600
@@ -23,14 +24,14 @@ final ThemeData appTheme = ThemeData(
     buttonColor: Color(0xFF0052CC),
     textTheme: ButtonTextTheme.primary,
   ),
-  textTheme: const TextTheme(
-    displayLarge: TextStyle(
+  textTheme: GoogleFonts.poppinsTextTheme().copyWith(
+    headlineLarge: const TextStyle(
         fontSize: 32, fontWeight: FontWeight.bold, color: Color(0xFF172B4D)),
-    displayMedium: TextStyle(
+    headlineMedium: const TextStyle(
         fontSize: 28, fontWeight: FontWeight.bold, color: Color(0xFF172B4D)),
-    bodyLarge: TextStyle(fontSize: 16, color: Color(0xFF42526E)),
-    bodyMedium: TextStyle(fontSize: 14, color: Color(0xFF42526E)),
-    bodySmall: TextStyle(fontSize: 12, color: Color(0xFF6B778C)),
+    bodyLarge: const TextStyle(fontSize: 16, color: Color(0xFF42526E)),
+    bodyMedium: const TextStyle(fontSize: 14, color: Color(0xFF42526E)),
+    bodySmall: const TextStyle(fontSize: 12, color: Color(0xFF6B778C)),
   ),
   cardTheme: CardTheme(
     color: Colors.white,

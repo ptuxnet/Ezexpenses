@@ -94,6 +94,8 @@ class _NewExpenseState extends State<NewExpense> {
                 maxLength: 50,
                 decoration: const InputDecoration(
                   label: Text('Title'),
+                  border: OutlineInputBorder(),
+                  hintText: 'Enter a title for your expense',
                 ),
               ),
               Row(
@@ -103,8 +105,10 @@ class _NewExpenseState extends State<NewExpense> {
                       controller: _amountController,
                       keyboardType: TextInputType.number,
                       decoration: const InputDecoration(
-                        prefixText: '\$',
+                        prefixText: '₹ ',
                         label: Text('Amount'),
+                        border: OutlineInputBorder(),
+                        hintText: 'Enter amount',
                       ),
                     ),
                   ),
@@ -132,28 +136,40 @@ class _NewExpenseState extends State<NewExpense> {
                   )
                 ],
               ),
+              const SizedBox(
+                height: 16,
+              ),
               Row(
                 children: [
-                  DropdownButton(
-                    value: _selectedCategory,
-                    items: Category.values
-                        .map(
-                          (category) => DropdownMenuItem(
-                            value: category,
-                            child: Text(
-                              category.name.toUpperCase(),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    decoration: const BoxDecoration(
+                      border: Border.fromBorderSide(BorderSide()),
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                    ),
+                    child: DropdownButton(
+                      elevation: 1,
+                      borderRadius: BorderRadius.circular(8),
+                      value: _selectedCategory,
+                      items: Category.values
+                          .map(
+                            (category) => DropdownMenuItem(
+                              value: category,
+                              child: Text(
+                                category.name.toUpperCase(),
+                              ),
                             ),
-                          ),
-                        )
-                        .toList(),
-                    onChanged: (value) {
-                      if (value == null) {
-                        return;
-                      }
-                      setState(() {
-                        _selectedCategory = value;
-                      });
-                    },
+                          )
+                          .toList(),
+                      onChanged: (value) {
+                        if (value == null) {
+                          return;
+                        }
+                        setState(() {
+                          _selectedCategory = value;
+                        });
+                      },
+                    ),
                   ),
                   const Spacer(),
                   TextButton(
@@ -164,7 +180,13 @@ class _NewExpenseState extends State<NewExpense> {
                   ),
                   ElevatedButton(
                     onPressed: _submitExpenseData,
-                    child: const Text("Save Expense"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context)
+                          .primaryColor, // Set the button color here
+                    ),
+                    child: const Text("Save Expense",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold)),
                   ),
                 ],
               )
