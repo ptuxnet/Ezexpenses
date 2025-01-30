@@ -1,3 +1,4 @@
+import 'package:ezexpense/widget/chart/chart.dart';
 import 'package:ezexpense/widget/expenses_list.dart';
 import 'package:ezexpense/model/expense_model.dart';
 import 'package:ezexpense/widget/new_expense.dart';
@@ -145,13 +146,7 @@ class _ExpensesState extends State<Expenses> {
       body: Center(
         child: Column(
           children: [
-            const SizedBox(
-              height: 20,
-            ),
-            const Text('Graph will be shown here'),
-            const SizedBox(
-              height: 20,
-            ),
+            Chart(expenses: _registeredExpenses),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
               child: Divider(),
