@@ -14,10 +14,7 @@ class ExpensesItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: Card(
-        elevation: 0.0,
-        shape: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
+        elevation: 1.0,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: 20,
@@ -26,13 +23,16 @@ class ExpensesItem extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(expense.title),
+              Text(
+                expense.title,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
               const SizedBox(
                 height: 4,
               ),
               Row(
                 children: [
-                  Text('\$${expense.amount.toStringAsFixed(2)}'),
+                  Text('₹${expense.amount}'),
                   const Spacer(),
                   Row(
                     children: [
