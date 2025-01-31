@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ezexpense/widget/chart/chart.dart';
 import 'package:ezexpense/widget/expenses_list.dart';
 import 'package:ezexpense/model/expense_model.dart';
@@ -105,21 +107,26 @@ class _ExpensesState extends State<Expenses> {
     setState(() {
       _registeredExpenses.remove(expense);
     });
+
     ScaffoldMessenger.of(context).clearSnackBars();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        duration: const Duration(seconds: 2),
-        content: const Text('Your Expense has been deleted'),
-        action: SnackBarAction(
-          label: 'UNDO',
-          onPressed: () {
-            setState(() {
-              _registeredExpenses.insert(expenseIndex, expense);
-            });
-          },
-        ),
+    final snackBar = SnackBar(
+      content: const Text('Your Expense has been deleted'),
+      action: SnackBarAction(
+        label: 'UNDO',
+        onPressed: () {
+          setState(() {
+            _registeredExpenses.insert(expenseIndex, expense);
+          });
+        },
       ),
     );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+    // Automatically dismiss the SnackBar after 2 seconds
+    Timer(const Duration(seconds: 4), () {
+      ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    });
   }
 
   @override
