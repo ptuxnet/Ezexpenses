@@ -1,9 +1,14 @@
-import 'package:ezexpense/screens/onboarding.dart';
 import 'package:ezexpense/themes/color_theme.dart';
+import 'package:ezexpense/widget/expenses.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // It won't let go device orientation to landscape mode.
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((value) => runApp(const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: appTheme,
-      home: const TodoistLoginScreen(),
+      home: const Expenses(),
       debugShowCheckedModeBanner: false,
     );
   }

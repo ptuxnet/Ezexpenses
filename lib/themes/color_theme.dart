@@ -7,7 +7,8 @@ final ThemeData appTheme = ThemeData(
     primary: Color(0xFF0052CC), // Brand Primary Default 600
     secondary: Color(0xFF253858), // Secondary Default 600
     surface: Color(0xFFFFFFFF),
-    error: Color(0xFFDE350B), // Error Default 600
+    error: Color(0xFFDE350B),
+    // Error Default 600
     onPrimary: Colors.white,
     onSecondary: Colors.white,
     onSurface: Colors.black,

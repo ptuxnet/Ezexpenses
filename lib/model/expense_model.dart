@@ -38,23 +38,18 @@ class ExpenseBucket {
   final Category category;
   final List<Expense> expenses;
 
-  const ExpenseBucket({
-    required this.category,
-    required this.expenses,
-  });
+  ExpenseBucket({required this.category, required this.expenses});
 
-  // aditional constructor Funtion
-  ExpenseBucket.forCategroy(List<Expense> allexpenses, this.category)
-      : expenses = allexpenses
-            .where((element) => element.category == category)
-            .toList();
+  // Factory method to create an ExpenseBucket for a specific category
+  factory ExpenseBucket.forCategory(
+      List<Expense> allExpenses, Category category) {
+    final filteredExpenses =
+        allExpenses.where((expense) => expense.category == category).toList();
+    return ExpenseBucket(category: category, expenses: filteredExpenses);
+  }
 
-  int get totalExpenses {
-    // return expenses.fold(0, (previousValue, element) => previousValue + element.amount);
-    int sum = 0;
-    for (final expense in expenses) {
-      sum += expense.amount;
-    }
-    return sum;
+  // Calculate total expenses for this category
+  double get totalExpenses {
+    return expenses.fold(0, (sum, expense) => sum + expense.amount);
   }
 }
